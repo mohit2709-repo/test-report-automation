@@ -1,0 +1,43 @@
+{
+    "agent": {
+      "metrics_collection_interval": 60,
+      "logfile": "c:\\ProgramData\\Amazon\\AmazonCloudWatchAgent\\Logs\\amazon-cloudwatch-agent.log"
+    },
+    "metrics": {
+      "namespace": "AWS/EC2",
+      "metrics_collected": {
+        "Memory": {
+          "metrics_collection_interval": 60,
+          "measurement": [
+            "Memory % Committed Bytes In Use"
+          ]
+        }
+      },
+      "append_dimensions": {
+        "ImageId": "${aws:ImageId}",
+        "InstanceId": "${aws:InstanceId}",
+        "InstanceType": "${aws:InstanceType}",
+        "AutoScalingGroupName": "${aws:AutoScalingGroupName}"
+      },
+      "aggregation_dimensions" : [["ImageId"], ["InstanceId", "InstanceType"], ["d1"],[]]
+    },
+    "logs": {
+      "logs_collected": {
+        "files": {
+          "collect_list": [
+            {
+              "file_path": "c:\\ProgramData\\Amazon\\AmazonCloudWatchAgent\\Logs\\amazon-cloudwatch-agent.log",
+              "log_group_name": "amazon-cloudwatch-agent.log",
+              "timezone": "UTC"
+            },
+            {
+              "file_path": "c:\\ProgramData\\Amazon\\AmazonCloudWatchAgent\\Logs\\test.log",
+              "log_group_name": "test.log",
+              "timezone": "Local"
+            }
+          ]
+        }
+      },
+      "log_stream_name": "example_log_stream_name"
+    }
+}
